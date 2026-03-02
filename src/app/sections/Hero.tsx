@@ -12,21 +12,31 @@ export function Hero() {
     <motion.section
       id="hero"
       style={{ opacity, y }}
-      className="section-padding relative flex min-h-screen items-center"
+      className="relative flex min-h-[calc(100vh-4rem)] items-center px-6 py-20 md:min-h-[calc(100vh-5rem)] md:px-12 md:py-24 lg:px-16"
     >
-      <div className="mx-auto w-full max-w-6xl">
-        <p className="mb-6 text-xs tracking-[0.35em] text-textSecondary md:text-sm">
-          VERTICAL AI SOLUTIONS
-        </p>
-        <TextReveal
-          text=".dot"
-          as="h1"
-          className="text-[clamp(4rem,12vw,10rem)] font-semibold leading-none"
-        />
-        <p className="mt-8 max-w-2xl text-base leading-relaxed text-textSecondary md:text-lg">
-          We build AI-native SaaS products for specific industries. No generic tools.
-          Pure vertical expertise.
-        </p>
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-7">
+          <p className="mb-6 text-xs tracking-[0.35em] text-textSecondary md:text-sm">
+            VERTICAL AI SOLUTIONS
+          </p>
+          <TextReveal
+            text=".dot"
+            as="h1"
+            className="text-[clamp(4rem,12vw,10rem)] font-semibold leading-none"
+          />
+          <p className="mt-8 max-w-2xl text-base leading-relaxed text-textSecondary md:text-lg">
+            We build AI-native SaaS products for specific industries. No generic tools.
+            Pure vertical expertise.
+          </p>
+        </div>
+        <div className="lg:col-span-5 lg:justify-self-end">
+          <div className="max-w-sm border-borderSubtle lg:border-l lg:pl-8">
+            <p className="text-xs uppercase tracking-[0.22em] text-textTertiary">Slogan</p>
+            <p className="mt-3 text-left text-xl font-medium leading-snug text-textPrimary md:text-2xl lg:text-right">
+              Everything at your stop.
+            </p>
+          </div>
+        </div>
       </div>
     </motion.section>
   );

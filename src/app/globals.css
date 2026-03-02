@@ -1,4 +1,6 @@
-﻿@tailwind base;
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap");
+
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -27,7 +29,7 @@ body {
 }
 
 body {
-  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  font-family: "Satoshi", system-ui, sans-serif;
   background-image:
     radial-gradient(circle at 8% 8%, rgba(126, 163, 95, 0.12), transparent 34%),
     radial-gradient(circle at 90% 15%, rgba(245, 199, 113, 0.17), transparent 40%),
@@ -41,7 +43,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-inter), "SF Pro Display", sans-serif;
+  font-family: "Satoshi", system-ui, sans-serif;
   letter-spacing: -0.02em;
 }
 

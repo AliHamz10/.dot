@@ -16,6 +16,11 @@ export const projects: Project[] = [
     description: "AI solution for [industry].",
     href: "#",
   },
+  {
+    name: "Product 4",
+    description: "AI solution for [industry].",
+    href: "#",
+  },
 ];
 
 export const socialLinks: SocialLink[] = [

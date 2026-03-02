@@ -41,7 +41,7 @@ export function Projects() {
   return (
     <section id="products" ref={sectionRef} className="section-padding">
       <SectionTitle number="02" label="-- PRODUCTS" title="Our SaaS Platforms" />
-      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {projects.map((project, index) => (
           <FadeIn key={project.name} delay={index * 0.1}>
             <ProjectCard project={project} />

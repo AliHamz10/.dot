@@ -15,16 +15,12 @@ const iconMap: Record<string, LucideIcon> = {
 export function Contact() {
   return (
     <section id="contact" className="section-padding pb-16">
-      <SectionTitle number="03" label="-- CONTACT" title="Let\'s Build Together" />
+      <SectionTitle number="03" label="-- CONTACT" title="Let's Build Together" />
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
         <FadeIn className="space-y-8">
           <div>
             <p className="text-sm uppercase tracking-[0.2em] text-textTertiary">Address</p>
-            <p className="mt-2 text-lg text-textPrimary">[Your Address]</p>
-          </div>
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-textTertiary">Phone</p>
-            <p className="mt-2 text-lg text-textPrimary">[Phone Number]</p>
+            <p className="mt-2 text-lg text-textPrimary">Peshawar, Pakistan</p>
           </div>
           <div>
             <p className="text-sm uppercase tracking-[0.2em] text-textTertiary">Email</p>
