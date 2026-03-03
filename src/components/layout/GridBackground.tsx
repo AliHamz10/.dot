@@ -1,4 +1,4 @@
-﻿export function GridBackground() {
+export function GridBackground() {
   return (
     <div
       aria-hidden

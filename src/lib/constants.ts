@@ -1,24 +1,34 @@
-import type { Project, SocialLink } from "@/types";
+import type { NavItem, Project, SocialLink } from "@/types";
+
+export const navItems: NavItem[] = [
+  { label: "About", href: "#about" },
+  { label: "Platforms", href: "#products" },
+  { label: "Contact", href: "#contact" },
+];
 
 export const projects: Project[] = [
   {
-    name: "Product 1",
-    description: "AI solution for [industry].",
+    name: "PulseCare",
+    industry: "Healthcare Operations",
+    summary: "Reduce patient no-shows and automate follow-up workflows for clinics.",
     href: "#",
   },
   {
-    name: "Product 2",
-    description: "AI solution for [industry].",
+    name: "FleetSight",
+    industry: "Logistics Intelligence",
+    summary: "Route optimization and delay prediction for field and delivery teams.",
     href: "#",
   },
   {
-    name: "Product 3",
-    description: "AI solution for [industry].",
+    name: "LedgerFlow",
+    industry: "Finance Automation",
+    summary: "Autonomous reconciliation and anomaly detection for accounting teams.",
     href: "#",
   },
   {
-    name: "Product 4",
-    description: "AI solution for [industry].",
+    name: "HireGrid",
+    industry: "Talent Operations",
+    summary: "Accelerate screening and role matching with domain-aware candidate scoring.",
     href: "#",
   },
 ];

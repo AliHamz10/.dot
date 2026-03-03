@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface TextRevealProps {
@@ -10,7 +10,12 @@ interface TextRevealProps {
 }
 
 export function TextReveal({ text, className, as = "h1" }: TextRevealProps) {
+  const prefersReducedMotion = useReducedMotion();
   const MotionTag = motion[as];
+
+  if (prefersReducedMotion) {
+    return <MotionTag className={cn(className)}>{text}</MotionTag>;
+  }
 
   return (
     <MotionTag

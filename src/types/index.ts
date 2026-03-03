@@ -1,6 +1,12 @@
-﻿export interface Project {
+export interface NavItem {
+  label: string;
+  href: string;
+}
+
+export interface Project {
   name: string;
-  description: string;
+  industry: string;
+  summary: string;
   href: string;
 }
 

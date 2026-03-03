@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { ReactLenis } from "lenis/react";
@@ -9,18 +9,30 @@ interface SmoothScrollProps {
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
   const [mounted, setMounted] = useState(false);
+  const [allowSmoothScroll, setAllowSmoothScroll] = useState(true);
 
   useEffect(() => {
     setMounted(true);
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const onChange = () => {
+      setAllowSmoothScroll(!mediaQuery.matches);
+    };
+
+    onChange();
+    mediaQuery.addEventListener("change", onChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", onChange);
+    };
   }, []);
 
-  // Keep server HTML and initial client HTML identical to avoid hydration mismatch.
-  if (!mounted) {
+  if (!mounted || !allowSmoothScroll) {
     return <>{children}</>;
   }
 
   return (
-    <ReactLenis root options={{ lerp: 0.085, duration: 1.2 }}>
+    <ReactLenis root options={{ lerp: 0.085, duration: 1.1, smoothWheel: true }}>
       {children}
     </ReactLenis>
   );

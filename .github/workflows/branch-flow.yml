@@ -1,0 +1,30 @@
+name: Branch Flow Guard
+
+on:
+  pull_request:
+    branches:
+      - staging
+      - main
+
+jobs:
+  validate-flow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce branch flow
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          echo "base=$BASE_REF head=$HEAD_REF"
+
+          if [[ "$BASE_REF" == "main" && "$HEAD_REF" != "staging" ]]; then
+            echo "Only staging can be merged into main."
+            exit 1
+          fi
+
+          if [[ "$BASE_REF" == "staging" && "$HEAD_REF" != feature/* ]]; then
+            echo "Only feature/* branches can be merged into staging."
+            exit 1
+          fi
+
+          echo "Branch flow validation passed."
