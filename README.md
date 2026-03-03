@@ -36,6 +36,9 @@ npm run build      # Build for production
 npm run start      # Start production server
 npm run lint       # Run repository lint checks (debug-statement guard)
 npm run typecheck  # Run TypeScript checks
+npm run test:unit  # Run Node unit tests
+npm run test:smoke # Run production smoke tests (requires build)
+npm run test       # Full test suite (unit + build + smoke)
 ```
 
 ## Branching Workflow
@@ -59,7 +62,8 @@ GitHub Actions validate pull requests and pushes to `staging` and `main` with:
 - branch-flow checks
 - type checking
 - linting
-- production build validation
+- unit tests
+- production smoke tests
 
 ## Project Structure
 

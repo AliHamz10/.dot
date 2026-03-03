@@ -17,6 +17,7 @@
 
 ## Validation Gates
 - CI runs on pull requests and pushes to `staging` and `main`.
+- CI executes `npm run test` (unit tests + production smoke tests).
 - Branch flow guard rejects:
   - PRs to `main` unless source branch is `staging`.
   - PRs to `staging` unless source branch follows `feature/*`.

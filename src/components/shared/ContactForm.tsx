@@ -4,48 +4,19 @@ import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-
-interface ContactFormValues {
-  name: string;
-  email: string;
-  message: string;
-}
-
-type ContactErrors = Partial<Record<keyof ContactFormValues, string>>;
+import {
+  getTrimmedMessageLength,
+  initialContactFormValues,
+  type ContactFormValues,
+  validateContactForm,
+} from "@/lib/contact-form";
 
 export function ContactForm() {
-  const [values, setValues] = useState<ContactFormValues>({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState<ContactErrors>({});
+  const [values, setValues] = useState<ContactFormValues>(initialContactFormValues());
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormValues, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
-  const messageLength = useMemo(() => values.message.trim().length, [values.message]);
-
-  const validate = (): ContactErrors => {
-    const nextErrors: ContactErrors = {};
-    const trimmedName = values.name.trim();
-    const trimmedEmail = values.email.trim();
-    const trimmedMessage = values.message.trim();
-
-    if (!trimmedName) {
-      nextErrors.name = "Please enter your name.";
-    }
-    if (!trimmedEmail) {
-      nextErrors.email = "Please enter your email.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
-      nextErrors.email = "Please enter a valid email address.";
-    }
-    if (!trimmedMessage) {
-      nextErrors.message = "Please add a short project brief.";
-    } else if (trimmedMessage.length < 30) {
-      nextErrors.message = "Please share at least 30 characters for context.";
-    }
-
-    return nextErrors;
-  };
+  const messageLength = useMemo(() => getTrimmedMessageLength(values.message), [values.message]);
 
   const onChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -61,7 +32,7 @@ export function ContactForm() {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStatus(null);
-    const nextErrors = validate();
+    const nextErrors = validateContactForm(values);
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
       return;
@@ -71,7 +42,7 @@ export function ContactForm() {
     setIsSubmitting(true);
     await new Promise((resolve) => setTimeout(resolve, 600));
 
-    setValues({ name: "", email: "", message: "" });
+    setValues(initialContactFormValues());
     setStatus("Message captured. Connect your backend endpoint when ready.");
     setIsSubmitting(false);
   };

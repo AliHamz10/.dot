@@ -8,6 +8,7 @@ import { FadeIn } from "@/components/animation/FadeIn";
 import { ProjectCard } from "@/components/shared/ProjectCard";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { projects } from "@/lib/constants";
+import { computeActiveSlideIndex } from "@/lib/project-carousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,24 +36,13 @@ export function Projects() {
 
     const currentLeft = slider.scrollLeft;
     const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-    const edgeTolerance = 4;
-
-    if (currentLeft <= edgeTolerance) {
-      setActiveIndex(0);
-      return;
-    }
-
-    if (currentLeft >= maxScrollLeft - edgeTolerance) {
-      setActiveIndex(slides.length - 1);
-      return;
-    }
-
-    const firstOffset = slides[0].offsetLeft;
-    const step = slides.length > 1 ? slides[1].offsetLeft - firstOffset : slider.clientWidth;
-    if (step <= 0) return;
-
-    const rawIndex = Math.round((currentLeft - firstOffset) / step);
-    const nextIndex = Math.max(0, Math.min(slides.length - 1, rawIndex));
+    const slideOffsets = Array.from(slides, (slide) => slide.offsetLeft);
+    const nextIndex = computeActiveSlideIndex({
+      scrollLeft: currentLeft,
+      maxScrollLeft,
+      slideOffsets,
+      clientWidth: slider.clientWidth,
+    });
     setActiveIndex(nextIndex);
   }, [getSlides]);
 
@@ -174,4 +164,3 @@ export function Projects() {
     </section>
   );
 }
-

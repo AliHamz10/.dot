@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "bash ./scripts/lint.sh",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:unit:build": "tsc -p tsconfig.test.json",
+    "test:unit": "bash ./scripts/test-unit.sh",
+    "test:smoke": "bash ./scripts/test-smoke.sh",
+    "test": "npm run test:unit && npm run build && npm run test:smoke"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

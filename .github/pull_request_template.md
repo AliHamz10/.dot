@@ -11,7 +11,7 @@
 ## Quality Checklist
 - [ ] `npm run typecheck` passes.
 - [ ] `npm run lint` passes.
-- [ ] `npm run build` passes.
+- [ ] `npm run test` passes.
 - [ ] UI tested on desktop and mobile breakpoints.
 
 ## Risk / Breaking Changes
