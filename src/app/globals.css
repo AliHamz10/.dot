@@ -15,6 +15,17 @@
   --hover-state: #edf2df;
   --accent: #7ea35f;
   --accent-soft: #e5edd4;
+  --grid-line-opacity: 0.16;
+  --grid-overlay-opacity: 0.55;
+  --grid-size: 42px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --grid-line-opacity: 0.1;
+    --grid-overlay-opacity: 0.35;
+    --grid-size: 48px;
+  }
 }
 
 * {
