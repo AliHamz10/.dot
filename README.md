@@ -83,3 +83,27 @@ src/
 ## Deployment
 
 Compatible with Vercel and any Node.js hosting environment that supports Next.js.
+
+### Automatic Production Deployment (`main`)
+
+This repository now includes GitHub Actions workflow:
+
+- `.github/workflows/deploy-main.yml`
+
+It deploys to Vercel production when:
+
+- CI completes successfully for a `push` to `main`
+- or you trigger it manually from `workflow_dispatch`
+
+Add these repository secrets in GitHub (`Settings -> Secrets and variables -> Actions`):
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+To get `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`, run locally once:
+
+```bash
+vercel link
+cat .vercel/project.json
+```
