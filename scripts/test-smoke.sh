@@ -5,6 +5,17 @@ PORT="${PORT:-4010}"
 BASE_URL="http://127.0.0.1:${PORT}"
 LOG_FILE="/tmp/dot-website-test-server.log"
 
+match_file() {
+  local pattern="$1"
+  local file="$2"
+
+  if command -v rg >/dev/null 2>&1; then
+    rg -q "$pattern" "$file"
+  else
+    grep -Eq "$pattern" "$file"
+  fi
+}
+
 if [[ ! -f ".next/BUILD_ID" ]]; then
   echo "Missing production build artifacts. Run 'npm run build' before smoke tests."
   exit 1
@@ -25,9 +36,9 @@ for _ in {1..30}; do
   if curl -fsS "$BASE_URL" >/tmp/dot-homepage.html; then
     break
   fi
-  if [[ -f "$LOG_FILE" ]] && rg -q "listen EPERM|Failed to start server" "$LOG_FILE"; then
+  if [[ -f "$LOG_FILE" ]] && match_file "listen EPERM|Failed to start server" "$LOG_FILE"; then
     echo "Server binding is restricted in this environment; running static smoke fallback."
-    rg -q "\"/\"" .next/prerender-manifest.json
+    match_file "\"/\"" .next/prerender-manifest.json
     [[ -f ".next/server/app/page.js" ]]
     echo "Smoke tests passed (static fallback)."
     exit 0
@@ -38,7 +49,7 @@ done
 curl -fsS "$BASE_URL" >/tmp/dot-homepage.html
 curl -fsS "$BASE_URL/icon.svg" >/tmp/dot-icon.svg
 
-if ! rg -q "dot|VERTICAL AI SOLUTIONS" /tmp/dot-homepage.html; then
+if ! match_file "dot|VERTICAL AI SOLUTIONS" /tmp/dot-homepage.html; then
   echo "Homepage smoke test failed: expected branding text not found."
   exit 1
 fi

@@ -3,9 +3,16 @@ set -euo pipefail
 
 SOURCE_DIR="src"
 
-if rg -n "console\\.log|debugger" "$SOURCE_DIR"; then
-  echo "Lint failed: remove debug statements from production source files."
-  exit 1
+if command -v rg >/dev/null 2>&1; then
+  if rg -n "console\\.log|debugger" "$SOURCE_DIR"; then
+    echo "Lint failed: remove debug statements from production source files."
+    exit 1
+  fi
+else
+  if grep -REn "console\\.log|debugger" "$SOURCE_DIR"; then
+    echo "Lint failed: remove debug statements from production source files."
+    exit 1
+  fi
 fi
 
 echo "Lint passed: no debug statements found in $SOURCE_DIR/."
