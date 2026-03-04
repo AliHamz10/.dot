@@ -34,7 +34,7 @@ export const projects: Project[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { label: "Instagram", href: "https://www.instagram.com" },
-  { label: "LinkedIn", href: "https://www.linkedin.com" },
+  { label: "Instagram", href: "https://www.instagram.com/aidot.tech/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/dot-01a9993b4/" },
   { label: "Twitter", href: "https://twitter.com" },
 ];
