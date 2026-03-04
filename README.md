@@ -36,6 +36,8 @@ npm run build      # Build for production
 npm run start      # Start production server
 npm run lint       # Run repository lint checks (debug-statement guard)
 npm run typecheck  # Run TypeScript checks
+npm run db:setup:contact  # Create required Postgres table for contact form
+npm run db:verify:contact # Verify table + insert path against Postgres
 npm run test:unit  # Run Node unit tests
 npm run test:smoke # Run production smoke tests (requires build)
 npm run test       # Full test suite (unit + build + smoke)
@@ -112,15 +114,19 @@ cat .vercel/project.json
 
 The contact form now submits to `POST /api/contact`.
 
-- By default, submissions are appended as NDJSON records to:
-  - `/tmp/dot-website-contact-submissions.ndjson`
-- To change the location, set:
-  - `CONTACT_SUBMISSIONS_FILE=/absolute/path/to/contact-submissions.ndjson`
+- Submissions are persisted in Postgres table:
+  - `contact_submissions`
+- Required environment variable:
+  - `DATABASE_URL`
+- To initialize the table:
+  - `npm run db:setup:contact`
+- To verify connectivity and insert behavior:
+  - `npm run db:verify:contact`
 
 Each record stores:
 
 - `id`
-- `createdAt`
+- `created_at`
 - `name`
 - `email`
 - `message`
