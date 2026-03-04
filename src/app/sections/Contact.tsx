@@ -25,7 +25,7 @@ export function Contact() {
             </div>
             <div>
               <p className="text-sm uppercase tracking-[0.2em] text-textTertiary">Email</p>
-              <p className="mt-2 text-lg text-textPrimary">hello@dot.ai</p>
+              <p className="mt-2 text-lg text-textPrimary">hello@aidot.tech</p>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-textSecondary">
               Tell us your domain, current workflow pain, and target KPI. We will map
