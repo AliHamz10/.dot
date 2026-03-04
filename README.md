@@ -107,3 +107,20 @@ To get `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`, run locally once:
 vercel link
 cat .vercel/project.json
 ```
+
+### Contact Form Storage
+
+The contact form now submits to `POST /api/contact`.
+
+- By default, submissions are appended as NDJSON records to:
+  - `/tmp/dot-website-contact-submissions.ndjson`
+- To change the location, set:
+  - `CONTACT_SUBMISSIONS_FILE=/absolute/path/to/contact-submissions.ndjson`
+
+Each record stores:
+
+- `id`
+- `createdAt`
+- `name`
+- `email`
+- `message`

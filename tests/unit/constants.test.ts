@@ -19,3 +19,10 @@ test("social links use secure https URLs", () => {
     assert.ok(link.href.startsWith("https://"), `Expected https URL for ${link.label}`);
   }
 });
+
+test("social links match expected channels", () => {
+  assert.deepEqual(
+    socialLinks.map((link) => link.label),
+    ["Instagram", "LinkedIn", "Twitter"],
+  );
+});

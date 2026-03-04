@@ -40,11 +40,37 @@ export function ContactForm() {
 
     setErrors({});
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 600));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
 
-    setValues(initialContactFormValues());
-    setStatus("Message captured. Connect your backend endpoint when ready.");
-    setIsSubmitting(false);
+      const payload = (await response.json().catch(() => null)) as
+        | {
+            errors?: Partial<Record<keyof ContactFormValues, string>>;
+            message?: string;
+          }
+        | null;
+
+      if (!response.ok) {
+        if (payload?.errors) {
+          setErrors(payload.errors);
+        }
+        setStatus(payload?.message ?? "We could not send your message. Please try again.");
+        return;
+      }
+
+      setValues(initialContactFormValues());
+      setStatus("Message received. We will get back to you shortly.");
+    } catch {
+      setStatus("Network error. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

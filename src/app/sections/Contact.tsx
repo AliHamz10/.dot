@@ -1,15 +1,15 @@
 "use client";
 
-import { Github, Linkedin, Twitter, type LucideIcon } from "lucide-react";
+import { Instagram, Linkedin, Twitter, type LucideIcon } from "lucide-react";
 import { FadeIn } from "@/components/animation/FadeIn";
 import { ContactForm } from "@/components/shared/ContactForm";
 import { SectionTitle } from "@/components/shared/SectionTitle";
 import { socialLinks } from "@/lib/constants";
 
 const iconMap: Record<string, LucideIcon> = {
-  X: Twitter,
+  Instagram,
   LinkedIn: Linkedin,
-  GitHub: Github,
+  Twitter,
 };
 
 export function Contact() {
@@ -63,4 +63,3 @@ export function Contact() {
     </section>
   );
 }
-
