@@ -34,6 +34,9 @@ jobs:
         with:
           ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
 
+      - name: Remove Git metadata for CLI deploy
+        run: rm -rf .git
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
