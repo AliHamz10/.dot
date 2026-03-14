@@ -8,21 +8,21 @@ export const navItems: NavItem[] = [
 
 export const projects: Project[] = [
   {
-    name: "PulseCare",
-    industry: "Healthcare Operations",
-    summary: "Reduce patient no-shows and automate follow-up workflows for clinics.",
+    name: "Sereai Labs",
+    industry: "Healthcare Intelligence",
+    summary: "Turn medical reports into clear insights, alerts, and medication guidance.",
     href: "#",
   },
   {
-    name: "FleetSight",
-    industry: "Logistics Intelligence",
-    summary: "Route optimization and delay prediction for field and delivery teams.",
+    name: "Context",
+    industry: "Context-Aware Intelligence",
+    summary: "Remembers conversations and routes queries to the best models for optimal responses.",
     href: "#",
   },
   {
-    name: "LedgerFlow",
-    industry: "Finance Automation",
-    summary: "Autonomous reconciliation and anomaly detection for accounting teams.",
+    name: "Sara",
+    industry: "AI Voice Automation for Clinics",
+    summary: "Autonomous patient calling, scheduling, and appointment reminders.",
     href: "#",
   },
   {
